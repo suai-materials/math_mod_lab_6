@@ -30,18 +30,18 @@ fn main() {
         }
         println!()
     }
-    let mini_max: i32 = match matrix.iter().map(|col| {col.iter().min()}).max().expect("WTF") {
+    let mini_max: i32 = match matrix.iter().map(|row| {row.iter().min()}).max().expect("WTF") {
         None => {0}
         Some(n) => {*n}
     };
-    let mut max_of_rows = vec![0; m];
-    for i in 0..m{
-        max_of_rows[i] = match matrix[i].iter().max() {
+    let mut max_of_cols = vec![0; m];
+    for j in 0..n{
+        max_of_cols[j] = match matrix.iter().map(|row| {row[j]}).rev().max() {
             None => {0}
-            Some(n) => {*n}
+            Some(n) => {n}
         };
     }
-    let maxi_min = match max_of_rows.iter().min() {
+    let maxi_min = match max_of_cols.iter().min() {
         None => {0}
         Some(n) => {*n}
     };
